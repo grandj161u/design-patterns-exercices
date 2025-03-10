@@ -2,7 +2,7 @@
 
 namespace App;
 
-class User 
+class User
 {
     // Hors exercice mais notable:
     // Promotion du constructeur: https://www.php.net/manual/fr/language.oop5.decon.php#language.oop5.decon.constructor.promotion
@@ -10,6 +10,11 @@ class User
         private string $name,
         private bool $notified = false
     ) {}
+
+    public function notify(): void
+    {
+        $this->notified = true;
+    }
 
 
     public function isNotified(): bool

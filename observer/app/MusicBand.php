@@ -2,8 +2,10 @@
 
 namespace App;
 
-class MusicBand 
+class MusicBand
 {
+
+    protected $followers = [];
     // Hors exercice mais notable:
     // Promotion du constructeur: https://www.php.net/manual/fr/language.oop5.decon.php#language.oop5.decon.constructor.promotion
     public function __construct(
@@ -12,17 +14,27 @@ class MusicBand
     ) {}
 
 
-    public function addNewConcertDate(string $date, string $location):void
+    public function addNewConcertDate(string $date, string $location): void
     {
         $this->concert = [
             'date' =>  $date,
             'location' => $location
         ];
+
+        foreach ($this->followers as $follower) {
+            $follower->notify();
+        }
     }
 
-    public function attach(): void 
-    {}
+    public function attach($user): void
+    {
+        $this->followers[] = $user;
+    }
 
-    public function detach(): void 
-    {}
+    public function detach($user): void
+    {
+        $this->followers = array_filter($this->followers, function ($follower) use ($user) {
+            return $follower !== $user;
+        });
+    }
 }

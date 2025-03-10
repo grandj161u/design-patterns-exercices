@@ -22,7 +22,7 @@ class UserMusicBandTest extends TestCase
         $band->attach($michelle);
         $band->attach($yves);
 
-        $band->detach($yves);
+        $band->detach($albert);
 
         $band->addNewConcertDate('19/11/2027.', 'Bercy');
 
@@ -30,5 +30,4 @@ class UserMusicBandTest extends TestCase
         $this->assertTrue($michelle->isNotified());
         $this->assertTrue($yves->isNotified());
     }
-
 }
